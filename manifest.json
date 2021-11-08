@@ -1,0 +1,21 @@
+{
+    "manifest_version": 2,
+  
+    "name": "try this",
+    "description": "try this launcher to waste your time",
+    "version": "1.0.0",
+   
+    "permissions": [
+      "tabs", "storage", "activeTab"
+      
+    ],
+    "background": {
+      "scripts": ["background.js"]
+      
+  },
+    
+      "browser_action": {
+
+        "default_popup": "main.html"
+       }
+  }
