@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Try this extension</title>
     <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="timer.css">
+    <!-- <link rel="stylesheet" href="timer.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
@@ -81,21 +81,121 @@
             </div>
             <div class="container">
                 <h1>00:00</h1>
-              </div>
+            </div>
             <hr>
             <div class="options">
                 <h1 class="optmin">Pomodoro</h1>
-                <div class="optdiv">
+                <!-- Here pomodoro experiment begins ⏰ ⏰ ⏰ ⏰ ⏰-->
+
+                 <!-- This is where i am going to test the pomodoro clock -->
+
+ <div>
+     <!-- <div id="title">Pomodoro</div> -->
+     <!-- <div id="subtitle">A simple workflow tool</div> -->
+     <div class="optmin">
+         <!-- <h1 class="optmin">Pomodoro</h1> -->
+         <p>
+         <div style="margin-left: 120px;"><span id="timer"></span></div>
+         <button id="btn_start" class="alarm_btn">start</button>
+         <button id="btn_pause" class="alarm_btn">pause</button>
+         <button id="btn_reset" class="alarm_btn">reset</button>
+         </p>
+         <p style="margin-left: 50px;">
+             <button id="btn_pomodoro" class="alarm_btn">pomodoro (25m)</button>
+        </p>
+        <p>
+             <button id="btn_shortbreak" class="alarm_btn">short break (5m)</button>
+             <button id="btn_longbreak" class="alarm_btn">long break (15m)</button>
+         </p>
+         <p>
+             <button id="btn_custom" class="alarm_btn">
+                 <label for="ipt_custom">custom:</label>
+             </button>
+             <input class="alarm_btn" type="number" id="ipt_custom" value="45" min="0" max="100000000">
+             <select class="alarm_btn" id="custom_units">
+                 <option value="seconds">seconds</option>
+                 <option value="minutes" selected>minutes</option>
+                 <option value="hours">hours</option>
+             </select>
+         </p>
+     </div>
+         <!-- <div class="footerbox">
+         <h1>How it works:</h1>
+         <ol>
+           <li>Choose a task to focus on</li>
+           <li>Work for 25 uninterrupted minutes</li>
+           <li>Break for 5 minutes</li>
+           <li>Every four cycles, take a 15-30 minute<br>
+               break instead, preferably outside</li>
+         </ol>
+         <br>
+         <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank">
+           Read more at Wikipedia
+         </a>
+       </div> -->
+         <div class="optmin">
+             <h1>Options:</h1>
+             <div id="options" margin-left:100px;>
+                 <label for="alarm_select" id="lbl_alarm">Alarm:</label><br>
+                 <select class="alarm_btn" id="alarm_select">
+                     <option value="none">None</option>
+                     <option value="alarm_chime">Chime</option>
+                     <option value="alarm_bell" selected>Bell</option>
+                     <option value="alarm_beeps">Beeps</option>
+                     <option value="alarm_boops">Boops</option>
+                 </select>
+                 <br><br>
+                 <label for="alarm_volume" id="lbl_volume">Volume:</label><br>
+                 <input type="range" id="alarm_volume" min=0 max=100 value=50>
+             </div>
+             <br>
+         </div>
+         <!-- <div class="credits">
+         Created by 
+         <a href="../index.html">Andy Roche</a> - 
+         <a href="https://github.com/rocheio/rocheio.github.io/tree/master/pomodoro">Github</a>
+       </div> -->
+ </div>
+ <audio id="alarm_chime">
+     <source src="audio/one_chime.mp3" type="audio/mpeg">
+ </audio>
+ <audio id="alarm_bell">
+     <source src="audio/one_bell.mp3" type="audio/mpeg">
+ </audio>
+ <audio id="alarm_beeps">
+     <source src="audio/three_beeps.mp3" type="audio/mpeg">
+ </audio>
+ <audio id="alarm_boops">
+     <source src="audio/three_boops.mp3" type="audio/mpeg">
+ </audio>
+ <!-- Audio courtesy of https://soundcloud.com/andyouarewho -->
+ <script type="text/javascript" src="../resources/mousetrap.js"></script>
+ <script type="text/javascript" src="pomodoro.js"></script>
+
+
+
+
+
+
+
+
+ <!-- Here testing ends -->
+
+                <!-- Here pomodoro experiment begins ⏰ ⏰ ⏰ ⏰ ⏰-->
+                
+
+
+                <!-- <div class="optdiv">
 
                     <label class="switch">
                         <input type="checkbox">
                         <span class="slider"></span>
                     </label>
                 </div>
-                <div class="optmin">
-                    <div class="timer"></div>
+                <div class="optmin"> -->
+                    <!-- <div class="timer"></div> -->
 
-                    <div>
+                    <!-- <div>
 
                         <p>Take a Break</p>
                         <label class="switch">
@@ -104,14 +204,14 @@
                         </label>
                     </div>
 
-                </div>
+                </div> -->
             </div>
             <hr>
             <div>
                 <input class="alarm_btn" id="alarmTime" type="datetime-local">
                 <button class="alarm_btn" id="alarmButton" onclick="setAlarm(this);">Set Alarm</button>
 
-                <div id="alarmOptions" style = "margin-left: 25px; margin-top: 10px;">
+                <div id="alarmOptions" style="margin-left: 25px; margin-top: 10px;">
                     <button class="snooze_btn" onclick="snooze();">Snooze 5 minutes</button>
                     <button class="snooze_btn" onclick="stopAlarm();">Stop Alarm</button>
                 </div>
@@ -139,8 +239,8 @@
                 </div>
                 <hr>
             </div>
-            
-            
+
+
             <h1> Focus Music
             </h1>
         </div>
@@ -153,19 +253,22 @@
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
     </div>
 
+
+
+   
     <script src="main.js">
 
-        
+
 
     </script>
     <script src="alarmclock.js">
 
     </script>
 
-    <script src="timer.js">
-    </script>
+    <!-- <script src="timer.js">
+    </script> -->
     <script src="eye_timer.js"></script>
-    
+
 </body>
 
 </html>
