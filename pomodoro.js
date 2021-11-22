@@ -92,6 +92,7 @@ function playAlarm() {
         var alarmVolume = document.getElementById('alarm_volume').value;
         alarmAudio.volume = alarmVolume / 100;
         alarmAudio.play();
+        alert('times up guys');
     }
 }
 
@@ -176,6 +177,7 @@ window.onload = function () {
         'click', function () {
             resetMainTimer(25*60);
             timer.start();
+            
         });
         
     document.getElementById('btn_shortbreak').addEventListener(

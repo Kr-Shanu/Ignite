@@ -54,9 +54,18 @@
                 <div>
 
                     <p>Turn the alarm on</p><label class="switch">
-                        <input type="checkbox">
+                        <input id="timer_dropdown" type="checkbox">
                         <span class="slider"></span>
                     </label>
+                    <div id="timer_dropdown_div">
+                        <input class="alarm_btn" id="alarmTime" type="datetime-local">
+                        <button class="alarm_btn" id="alarmButton" onclick="setAlarm(this);">Set Alarm</button>
+                        
+                        <div id="alarmOptions" style="margin-left: 25px; margin-top: 10px;">
+                            <button class="snooze_btn" onclick="snooze();">Snooze 5 minutes</button>
+                            <button class="snooze_btn" onclick="stopAlarm();">Stop Alarm</button>
+                        </div>
+                    </div>
                 </div>
                 <div>
 
@@ -216,15 +225,7 @@
                 </div> -->
             </div>
             <hr>
-            <div>
-                <input class="alarm_btn" id="alarmTime" type="datetime-local">
-                <button class="alarm_btn" id="alarmButton" onclick="setAlarm(this);">Set Alarm</button>
-                
-                <div id="alarmOptions" style="margin-left: 25px; margin-top: 10px;">
-                    <button class="snooze_btn" onclick="snooze();">Snooze 5 minutes</button>
-                    <button class="snooze_btn" onclick="stopAlarm();">Stop Alarm</button>
-                </div>
-            </div>
+            
             <hr>
             <div class="options">
                 <h1 class="optmin">Motivational Quotes</h1>
