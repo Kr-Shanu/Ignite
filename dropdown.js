@@ -33,3 +33,18 @@ timer_drop.addEventListener("click", (event)=>{
         timer_drop_content.style.display="none";
     }
 })
+
+// script for timer in  focus mode ends here
+
+const focusmode_drop =document.getElementById("focusmode_dropdown");
+const focusmode_drop_content = document.getElementById("focusmode_dropdown_div");
+focusmode_drop_content.style.display = "none";
+focusmode_drop.addEventListener("click", (event)=>{
+    if (focusmode_drop_content.style.display=="none"){
+        focusmode_drop_content.style.display="block";
+        focusmode_drop_content.style.listStyle="none";
+    }
+    else{
+        focusmode_drop_content.style.display="none";
+    }
+})
