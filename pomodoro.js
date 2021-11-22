@@ -117,7 +117,7 @@ function changeFavicon(color) {
 /** Window onload functions. */
 window.onload = function () {
     var timerDisplay = document.getElementById('timer'),
-        customTimeInput = document.getElementById('ipt_custom'),
+        customTimeInput = document.getElementById('ipt_custom'),////////
         timer = new CountdownTimer(),
         timeObj = parseSeconds(25*60);
     
@@ -194,7 +194,7 @@ window.onload = function () {
         
     document.getElementById('btn_custom').addEventListener(
         'click', function () {
-            customUnits = document.getElementById('custom_units').value
+            customUnits = document.getElementById('custom_units').value /////
             if (customUnits === 'minutes') {
                 resetMainTimer(customTimeInput.value*60);
             } else if (customUnits === 'hours') {

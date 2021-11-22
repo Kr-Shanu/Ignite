@@ -2,9 +2,9 @@ var alarmSound = new Audio();
 alarmSound.src = 'alarm.mp3';
 var alarmTimer;
 var palm = document.getElementsByClassName("snooze_btn");
-if (palm.style.display != ("none")) {
-	palm.style.display = "none";
-}
+// if (palm.style.display != ("none")) {
+// 	palm.style.display = "none";
+// }
 
 function setAlarm(button) {
 	var ms = document.getElementById('alarmTime').valueAsNumber;

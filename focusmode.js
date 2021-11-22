@@ -1,18 +1,57 @@
-var set.document.getElementById("set_btn");
-var timervalue.document.getElementById("timer_value");
-let timer.document.getElementById("countdown");
-set.addEventListener("click", (event) => {
-    timer = timervalue;
-    alert("btn working");
-    if (timer == null) {                                  //ye function kaam hi nahi kar rha
-        alert("Please enter time in minutes");
+var set_btns = document.getElementById("set_btn");
+var timervalue = document.getElementById("timer_value");
+var breakt = document.getElementById("breaktime");
+var breakdiv = document.getElementById("breakdiv");
+var output_div = document.getElementById("countdown");
+// let timer_focus = (timervalue.value)*60;
+// let timer_focus=2;
+// let exp=timervalue.value;
+// timervalue.addEventListener("click", (event) => {
+//     var timer_focus = prompt("enter the time in minutes", "59");
+// })
+set_btns.addEventListener("click", (event) => {
+    if (isNaN(timervalue)) {
+        // alert("Please enter time in minutes");
+    }
+    runing = setInterval(timerupdate, 1000);
+    // breakdiv.style.display == "none";
+    
+    // breakt.addEventListener("click", (event) => {
+    //     if (breakdiv.style.display == "block") {
+        //         clearInterval(runing);
+        //         breakdiv.style.display="none";
+        
+        //     }
+        //     else {
+            //         runing = setInterval(timerupdate, 1000);
+            //         breakdiv.style.display="block";    
+            //     }
+            // })
+        })
+        var timer_focus = timervalue;
+    //    var timer_focus=timer_focus*60;
+        if (timebox.style.display == "block") {
+            
+    // alert("check");
+}
+breakt.addEventListener("click", (event) => {
+    if (breakdiv.style.display == "none") {
+        breakdiv.style.display = "block";
+
+    }
+    else {
+        // runing = setInterval(timerupdate, 1000);
+        clearInterval(runing);
+        breakdiv.style.display = "none";
     }
 })
-setInterval(timerupdate,1000);
+
 function timerupdate() {
-    var minutes = (timer / 60);
-    var seconds = (timer % 60);
+    var minutes = ((timer_focus.value)/60);
+    var seconds = ((timer_focus.value) % 60);
     seconds = seconds < 10 ? '0' + seconds : seconds;
-    timer.innerhtml=`${minutes}:${seconds}`;
-    timer--;
+    output_div.innerHTML = `${minutes}:${seconds}`;
+    timer_focus--;
+    // timervalue.value;
 }
+output_div.innerHTML = "00:00";

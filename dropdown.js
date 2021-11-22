@@ -37,9 +37,9 @@ dropdown_fnc(focusmode_drop_content,focusmode_drop);
 
 //  script for focus mode dropdown ends here
 
-const timebox_switch = document.getElementById("timebox_switch");
-const timebox = document.getElementById("timebox");
-const timer_txt = document.getElementById("timer_text");
+const timebox_switch = document.getElementById("timebox_switch");   //the switch of the timer
+const timebox = document.getElementById("timebox");      //the content under timer button
+const timer_txt = document.getElementById("timer_text"); //turn the timer on text
 timebox.style.display = "none";
 timebox_switch.addEventListener("click", (event) => {
     // alert("check message");
@@ -55,3 +55,4 @@ timebox_switch.addEventListener("click", (event) => {
 })
 
 //timer dropdown ends here
+
