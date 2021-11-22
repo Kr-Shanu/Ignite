@@ -247,3 +247,6 @@ hr {
     transition-duration: 3s;
     transition-timing-function: ease-out;
 }
+#timer_dropdown_div{
+  float: left;
+}
