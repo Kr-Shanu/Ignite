@@ -36,6 +36,9 @@ const focusmode_drop_content = document.getElementById("focusmode_dropdown_div")
 dropdown_fnc(focusmode_drop_content,focusmode_drop);
 
 //  script for focus mode dropdown ends here
+var focusd = document.getElementById("focusmode_dropdown");
+var focusd_content = document.getElementById("focusmode_dropdown_div");
+dropdown_fnc(focusd_content,focusd);
 
 const timebox_switch = document.getElementById("timebox_switch");   //the switch of the timer
 const timebox = document.getElementById("timebox");      //the content under timer button
