@@ -1,5 +1,5 @@
 var set_btns = document.getElementById("set_btn");
-var timervalue = document.getElementById("timer_value");
+var timervalue = document.getElementById("timer_value").value;
 var breakt = document.getElementById("breaktime");
 var breakdiv = document.getElementById("breakdiv");
 var output_div = document.getElementById("countdown");
@@ -11,7 +11,7 @@ var output_div = document.getElementById("countdown");
 // })
 set_btns.addEventListener("click", (event) => {
     if (isNaN(timervalue)) {
-        // alert("Please enter time in minutes");
+        alert("Please enter time in minutes");
     }
     runing = setInterval(timerupdate, 1000);
     // breakdiv.style.display == "none";
@@ -47,8 +47,8 @@ breakt.addEventListener("click", (event) => {
 })
 
 function timerupdate() {
-    var minutes = ((timer_focus.value)/60);
-    var seconds = ((timer_focus.value) % 60);
+    var minutes = parseInt((timer_focus)/60);
+    var seconds = ((timer_focus) % 60);
     seconds = seconds < 10 ? '0' + seconds : seconds;
     output_div.innerHTML = `${minutes}:${seconds}`;
     timer_focus--;

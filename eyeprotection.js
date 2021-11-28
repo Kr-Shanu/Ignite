@@ -13,7 +13,7 @@ eye_reset.addEventListener("click", (event) => {
 })
     
 function eyetimer() {
-    var minutes = ((eyetim_value)/60);
+    var minutes = parseInt((eyetim_value)/60);
     var seconds = ((eyetim_value) % 60);
     seconds = seconds < 10 ? '0' + seconds : seconds;
     eyeprot_output.innerHTML = `${minutes}:${seconds}`;

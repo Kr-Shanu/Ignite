@@ -23,12 +23,7 @@
 <!-- <body> -->
 
 <body data-tab="alarm" data-alarm="view" data-stopwatch="start" data-timer="start" vbox>
-    <header hbox align="center">
-        <h1 for="alarm" class="medium">Alarm</h1>
-        <h1 for="stopwatch" class="medium">Stopwatch</h1>
-        <h1 for="timer" class="medium">Timer</h1>
-        <input type="button" id="plus">
-    </header>
+
     <div id="body">
         <div id="nav">
             <div class="logo">Ignite</div>
@@ -66,12 +61,25 @@
                     </div>
                     <div>
 
+                        <p>Break Time</p>
+                        <label class="switch">
+                            <input id="breaktime" type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                        <div id="breakdiv"></div>
+                    </div>
+                    <div>
+
+                        
                         <p>Turn the alarm on</p><label class="switch">
                             <input id="timer_dropdown" type="checkbox">
                             <span class="slider"></span>
                         </label>
-                        <div id="timer_dropdown_div">
-                            <!-- <input class="alarm_btn" id="alarmTime" type="datetime-local">
+                    </div>
+                </div>
+                <div>
+                    <div id="timer_dropdown_div">
+                        <!-- <input class="alarm_btn" id="alarmTime" type="datetime-local">
                             <button class="alarm_btn" id="alarmButton" onclick="setAlarm(this);">Set Alarm</button>
 
                             <div id="alarmOptions" style="margin-left: 25px; margin-top: 10px;">
@@ -79,7 +87,11 @@
                                 <button class="snooze_btn" onclick="stopAlarm();">Stop Alarm</button>
                             </div> -->
 
-                            <div id="content" hbox flex="1">
+                        <div id="content" hbox flex="1">
+                            <header>
+
+                                <input type="button" id="plus">
+
                                 <div for="alarm" class="alarm" vbox>
                                     <div data-id="content" vbox flex="1">
                                         <div data-id="toast" class="bulky">
@@ -155,19 +167,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
-                    <div>
-
-                        <p>Break Time</p>
-                        <label class="switch">
-                            <input id="breaktime" type="checkbox">
-                            <span class="slider"></span>
-                        </label>
-                        <div id="breakdiv"></div>
-                    </div>
                 </div>
+
+
                 <!-- <hr> -->
             </div>
         </div>
@@ -204,52 +208,52 @@
                     <li>
                         <div>
 
-                            <div class="optmin">
-                                <div class="timer" vbox>
-                                    <div hbox align="center" pack="center" flex="1">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th>Hours</th>
-                                                    <th>Minutes</th>
-                                                    <th>Seconds</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><input type="number" data-id="hours" min="0" max="99"
-                                                            value="00"></td>
-                                                    <td><input type="number" data-id="minutes" min="0" max="59"
-                                                            value="30"></td>
-                                                    <td><input type="number" data-id="seconds" min="0" max="59"
-                                                            value="00"></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                            <!-- <div class="optmin"> -->
+                            <div class="timer" vbox>
+                                <div hbox align="center" pack="center" flex="1">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Hours</th>
+                                                <th>Minutes</th>
+                                                <th>Seconds</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><input type="number" data-id="hours" min="0" max="99" value="00">
+                                                </td>
+                                                <td><input type="number" data-id="minutes" min="0" max="59" value="30">
+                                                </td>
+                                                <td><input type="number" data-id="seconds" min="0" max="59" value="00">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div data-id="presets">
+                                    <div hbox>
+                                        <span data-value="00:05:00">00:05:00</span>
+                                        <span data-value="00:10:00">00:10:00</span>
+                                        <span data-value="00:30:00">00:30:00</span>
+                                        <span data-value="00:45:00">00:45:00</span>
                                     </div>
-                                    <div data-id="presets">
-                                        <div hbox>
-                                            <span data-value="00:05:00">00:05:00</span>
-                                            <span data-value="00:10:00">00:10:00</span>
-                                            <span data-value="00:30:00">00:30:00</span>
-                                            <span data-value="00:45:00">00:45:00</span>
-                                        </div>
-                                        <div hbox>
-                                            <span data-value="01:00:00">01:00:00</span>
-                                            <span data-value="02:00:00">02:00:00</span>
-                                            <span data-value="05:00:00">05:00:00</span>
-                                            <span data-value="10:00:00">10:00:00</span>
-                                        </div>
-                                    </div>
-                                    <div data-id="tools" class="bulky">
-                                        <input type="button" value="Start" data-command="start">
-                                        <input type="button" value="Resume" data-command="resume">
-                                        <input type="button" value="Pause" data-command="pause">
-                                        <input type="button" value="Cancel" data-command="cancel">
+                                    <div hbox>
+                                        <span data-value="01:00:00">01:00:00</span>
+                                        <span data-value="02:00:00">02:00:00</span>
+                                        <span data-value="05:00:00">05:00:00</span>
+                                        <span data-value="10:00:00">10:00:00</span>
                                     </div>
                                 </div>
+                                <div data-id="tools" class="bulky">
+                                    <input type="button" value="Start" data-command="start">
+                                    <input type="button" value="Resume" data-command="resume">
+                                    <input type="button" value="Pause" data-command="pause">
+                                    <input type="button" value="Cancel" data-command="cancel">
+                                </div>
+                            </div>
 
-                                <!-- <p>
+                            <!-- <p>
                                 <div style="margin-left: 120px;"><span id="timer"></span></div>
                                 <button id="btn_start" class="alarm_btn">start</button>
                                 <button id="btn_pause" class="alarm_btn">pause</button>
@@ -275,7 +279,7 @@
                                     </select>
                                 </p> -->
 
-                                <!-- <div class="optmin">
+                            <!-- <div class="optmin">
                                     <h1>Options:</h1>
                                     <div id="options" margin-left:100px;>
                                         <label for="alarm_select" id="lbl_alarm">Alarm:</label><br>
@@ -305,7 +309,7 @@
                         <audio id="alarm_boops">
                             <source src="audio/three_boops.mp3" type="audio/mpeg">
                         </audio> -->
-                            </div>
+
                     </li>
                 </ul>
 
@@ -380,7 +384,14 @@
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
     </div>
 
-
+    <footer id="tabs" hbox>
+        <input type="radio" name="tab" id="alarm" checked>
+        <label for="alarm">Alarm</label>
+        <input type="radio" name="tab" id="stopwatch">
+        <label for="stopwatch">Stopwatch</label>
+        <input type="radio" name="tab" id="timer">
+        <label for="timer">Timer</label>
+    </footer>
 
 
     <script src="main.js"></script>

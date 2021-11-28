@@ -3,12 +3,25 @@
   "name": "Ignite",
   "description": "Try this launcher to enhance your productivity",
   "version": "0.7.8",
+  "default_locale": "en",
   "permissions": [
-    "tabs",
     "storage",
-    "activeTab"
+    "alarms",
+    "notifications"
   ],
+  "offline_enabled": true,
+  "background": {
+    "persistent": false,
+    "scripts": [
+      "background.js"
+    ]
+  },
   "browser_action": {
     "default_popup": "main.html"
+  },
+  "commands": {
+    "open-interface": {
+      "description": "Open the interface in a window"
+    }
   }
 }
