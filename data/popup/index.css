@@ -262,281 +262,7 @@ hr {
 
 
 
-/* backend starts here */
-
-
-/* 
-@supports (-moz-appearance:none) {
-  input[type=checkbox] {
-    -moz-appearance: initial;
-  }
-  input[type=number] {
-    box-sizing: border-box;
-    width: 100%;
-    -moz-appearance: textfield;
-  }
-}
-
-h3 {
-  margin: 0;
-  font-size: var(--font-small);
-  color: var(--color-dark);
-}
-input[type="button"] {
-  padding: 10px 20px;
-  border: none;
-  outline: none;
-  border-radius: 20px;
-  color: var(--color);
-  width: 100px;
-  cursor: pointer;
-}
-input[type="number"] {
-  font-size: var(--font-large);
-  font-weight: 300;
-  color: var(--color);
-  background-color: transparent;
-  border: none;
-  text-align: center;
-}
-header {
-  padding: 10px;
-  background-color: var(--header);
-}
-header h1 {
-  display: inline-block;
-  flex: 1;
-  margin: 0;
-}
-
-header input[type=button] {
-  background: url('icons/plus.svg') center center no-repeat;
-  background-size: 26px;
-  filter: invert(30%);
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  padding: 0;
-}
-
-
-input[type=checkbox].switch {
-  margin-left: 10px;
-}
-input[type=checkbox].switch::after {
-  content: '';
-  width: 32px;
-  height: 100%;
-  line-height: 28px;
-  display: inline-block;
-  background: url('icons/switch-off.svg') center center no-repeat;
-  background-size: 32px;
-  visibility: visible;
-  cursor: pointer;
-}
-input.switch[type=checkbox]:checked::after {
-  background-image: url('icons/switch-on.svg');
-}
-.alarm input[type=checkbox] {
-  visibility: hidden;
-  width: 28px;
-  height: 28px;
-}
-
-.alarm div[data-id="toast"] h1,
-.alarm div[data-id="toast"] h3 {
-  text-align: center;
-}
-.alarm div[data-id="toast"] h1 {
-  padding: 0 30px;
-}
-.alarm .entry {
-  background-color: var(--bg-dark-color);
-  padding: 20px 30px;
-  position: relative;
-}
-.alarm .entry [data-id="time"] {
-  flex: 1;
-  font-weight: 300;
-  text-align: left;
-}
-.alarm .entry [data-id="date"].range {
-  color: var(--color-pink);
-}
-.alarm .entry:not(:last-child) {
-  margin-bottom: 10px;
-}
-.alarm .entry[disabled=true] {
-  opacity: 0.5;
-}
-.alarm .entry [data-command="remove"] {
-  width: 16px;
-  height: 16px;
-  background: url(icons/close.svg) center center no-repeat;
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background-size: 16px;
-  filter: invert(30%);
-  padding: 0;
-}
-
-.alarm div[data-id="edit"] {
-  margin: 0 10px;
-}
-.alarm div[data-id="current"] {
-  padding: 10px 0;
-}
-.alarm div[data-id="days"] {
-  justify-content: space-between;
-}
-.alarm input:not(.switch)[type=checkbox]::after {
-  content: attr(data-id);
-  visibility: visible;
-  color: var(--color);
-  border-radius: 50%;
-  border: solid 1px transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 28px;
-}
-.alarm input:not(.switch)[type=checkbox]:checked::after {
-  color: var(--color-pink);
-  border-color: var(--color-pink);
-}
-.alarm table {
-  width: 100%;
-}
-.alarm [data-id="name"] {
-  color: var(--color);
-  background-color: var(--bg-dark-color);
-  border: none;
-  outline: none;
-  width: 100%;
-  padding: 10px 5px;
-  box-sizing: border-box;
-}
-body[data-alarm="view"] div[data-id="edit"] {
-  display: none;
-}
-.alarm div[data-id="content"] {
-  height: 100%;
-}
-.alarm div[data-id="entries"] {
-  overflow: auto;
-}
-body[data-alarm="edit"] div[data-id="content"] {
-  display: none;
-}
-.alarm .entry {
-  position: relative;
-}
-.alarm .entry [data-id=once] {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: var(--bg-pink-color);
-  padding: 0 10px;
-}
-.alarm .entry [data-id=once]:empty {
-  display: none;
-}
-
-
-[data-id="tools"] {
-  display: flex;
-  justify-content: space-around;
-  align-items: unset;
-  width: var(--width);
-}
-input[type="button"][data-command="save"],
-input[type="button"][data-command="resume"],
-input[type="button"][data-command="start"] {
-  background-color: var(--bg-pink-color);
-}
-input[type="button"][data-command="pause"],
-input[type="button"][data-command="stop"] {
-  background-color: var(--bg-red-color);
-}
-input[type="button"][data-command="cancel"],
-input[type="button"][data-command="reset"],
-input[type="button"][data-command="lap"] {
-  background-color: var(--bg-dark-color);
-}
-
-.timer {
-  flex-direction: column;
-}
-.timer table {
-  width: 100%;
-  table-layout: fixed;
-}
-.timer td {
-  text-align: center;
-}
-.timer th {
-  color: var(--color-dark);
-  font-weight: normal;
-}
-.timer [data-id="presets"] div span {
-  flex: 1;
-  text-align: center;
-  color: var(--color-dark);
-  cursor: pointer;
-}
-body[data-timer="working"] [data-id="presets"] {
-  display: none;
-}
-body[data-timer="start"] .timer input[type="button"]:not([data-command="start"]) {
-  display: none;
-}
-body[data-timer="working"] .timer input[type="button"]:not([data-command="pause"]):not([data-command="cancel"]) {
-  display: none;
-}
-body[data-timer="paused"] .timer input[type="button"]:not([data-command="resume"]):not([data-command="cancel"]) {
-  display: none;
-}
-
-
-[hbox] {
-  display: flex;
-  flex-direction: row;
-}
-[vbox] {
-  display: flex;
-  flex-direction: column;
-}
-
-[align="center"] {
-  align-items: center;
-}
-[align="end"] {
-  align-items: flex-end;
-}
-[pack="center"] {
-  justify-content: center;
-}
-[flex="1"] {
-  flex: 1;
-}
-.large {
-  font-size: var(--font-large);
-}
-.medium {
-  font-size: var(--font-medium);
-}
-.small {
-  font-size: var(--font-small);
-}
-.bulky {
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-.hidden {
-  display: none;
-} */
+/* backend starts here  */
 
 
 /* nnnnnnnnnnnnnnnnnnnnnnnnnnnnn */
@@ -607,7 +333,7 @@ html.pp body {
 input,
 body,
 h1 {
-  font-family: 'Open Sans', sans-serif;
+  /* font-family: 'Open Sans', sans-serif; */
 }
 body,
 input {
@@ -662,7 +388,7 @@ body[data-tab="timer"] header h1:not([for="timer"]) {
 header input[type=button] {
   background: url('icons/plus.svg') center center no-repeat;
   background-size: 26px;
-  filter: invert(100%);
+  filter: invert(30%);
   width: 20px;
   height: 20px;
   cursor: pointer;
@@ -776,7 +502,7 @@ body[data-tab="timer"] #content {
   top: 5px;
   right: 5px;
   background-size: 16px;
-  filter: invert(1);
+  filter: invert(30%);
   padding: 0;
 }
 
