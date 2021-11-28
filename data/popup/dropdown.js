@@ -24,7 +24,7 @@ dropdown_fnc(pomo_list,pomo);
 
 // script for pomodoro ends here.
 
-let timer_drop = document.getElementById("alarm");
+const timer_drop = document.getElementById("timer_dropdown");
 const timer_drop_content = document.getElementById("timer_dropdown_div");
 dropdown_fnc(timer_drop_content,timer_drop);
 

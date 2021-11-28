@@ -5,7 +5,7 @@ body {
   margin: 0;
   min-height: 180px;
   padding: 0;
-  width: 384px;
+  width: 400px;
 }
 #nav {
   display: flex;
@@ -543,7 +543,6 @@ body[data-timer="paused"] .timer input[type="button"]:not([data-command="resume"
 
 
 
-
 /* 
 @font-face {
   font-family: 'Open Sans';
@@ -576,25 +575,32 @@ body[data-timer="paused"] .timer input[type="button"]:not([data-command="resume"
 }
 
 :root {
-
+  /* --header: #444548;
+  --color: #fff;
+  --color-dark: #a0a0a0;
+  --bg-color: #2c2f32;
+  --bg-dark-color: #444548; */
+  --color-pink: #9a9dfc;
+  --bg-red-color: #692632;
+  --bg-pink-color: #66689e;
   --font-small: 12px;
   --font-medium: 22px;
   --font-normal: 15px;
   --font-large: 28px;
   --width: 400px;
 }
-html.pp {
+/* html.pp {
   --width: 100vw;
 }
 
-/* body {
+body {
   margin: 0;
   color: var(--color);
   background-color: var(--bg-color);
   width: var(--width);
   height: 600px;
-} */
-/* html.pp body {
+}
+html.pp body {
   height: 100vh;
 } */
 
@@ -656,7 +662,7 @@ body[data-tab="timer"] header h1:not([for="timer"]) {
 header input[type=button] {
   background: url('icons/plus.svg') center center no-repeat;
   background-size: 26px;
-  filter: invert(30%);
+  filter: invert(100%);
   width: 20px;
   height: 20px;
   cursor: pointer;
@@ -770,7 +776,7 @@ body[data-tab="timer"] #content {
   top: 5px;
   right: 5px;
   background-size: 16px;
-  /* filter: invert(1); */
+  filter: invert(1);
   padding: 0;
 }
 
@@ -962,5 +968,3 @@ body[data-timer="paused"] .timer input[type="button"]:not([data-command="resume"
 .hidden {
   display: none;
 }
-
-

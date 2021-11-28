@@ -51,7 +51,7 @@ const alarms = {
     }
     else {
       chrome.alarms.create(name, info);
-    } 
+    }
   },
   fire({name}) {
     const set = (name, title, message = `Time's up`) => chrome.notifications.clear(name, () => {
