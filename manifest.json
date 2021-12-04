@@ -11,11 +11,21 @@
   ],
   "offline_enabled": true,
   "background": {
-    "persistent": false,
+    "persistent": true,
     "scripts": [
       "background.js"
     ]
   },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.facebook.com/*",
+        "https://*.instagram.com/*",
+        "https://*.netflix.com/*"
+      ],
+      "js": ["focusprompt.js"]
+    }
+  ],
   "browser_action": {
     "default_popup": "data/popup/index.html"
   },

@@ -292,3 +292,50 @@ chrome.storage.onChanged.addListener(ps => {
     setUninstallURL(page + '?rd=feedback&name=' + encodeURIComponent(name) + '&version=' + version);
   }
 }
+
+
+// *************************    EYE protection    *********************************
+
+function create_alarm() {
+  console.log("alarm set");
+  chrome.alarms.create("blink_eye", { periodInMinutes: 1.0 });
+}
+// create_alarm(minute);
+chrome.alarms.onAlarm.addListener(function () {
+  // alert("its been soo long look away");
+  eyetimer_notif();
+  console.log("inside on alarm functions");
+})
+function clear_alarms() {
+  chrome.alarms.clear(
+    "blink_eye", function () {
+      alert("All alarms cleared");
+    }
+  )
+}
+// eyetimer_notif();   //just to check if the notificaiton api is working or not, this line can be deleted
+function eyetimer_notif() {
+  chrome.notifications.create("eye_tim_notif", {
+    type: "basic",
+    iconUrl: "/data/icons/32.png",
+    title: "Care for your eyes : Ignite",
+    message: "look away you have been seeing your screens since 20 minutes straight it will harm your eyes"
+  }, function () { console.log("notificaiton api in action") })               // call back funciton in case you don't understand.
+}
+chrome.runtime.onMessage.addListener(
+  function (request, sender, sendResponse) {
+    if (request.greeting == "put_eye_alarm") {
+      console.log("passed message to set alarm reached");
+      create_alarm();
+    }
+  });
+chrome.runtime.onMessage.addListener(
+  function (request, sender, sendResponse) {
+    if (request.greeting == "clear_eye_alarm") {
+      clear_alarms();
+      console.log("clear");
+    }
+  });
+
+
+// **************************   EYE protection    ********************************
