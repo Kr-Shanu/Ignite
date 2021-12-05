@@ -338,7 +338,7 @@ chrome.runtime.onMessage.addListener(
       console.log("clear eye alarm");
     }
   });
-var eyetim_value = 20 * 60;
+var eyetim_value = 21 * 60;
 
 // eyeprotoff = setInterval(eyetimer, 1000);
 let eyeprotoff;
@@ -352,7 +352,7 @@ function eyetimer() {
   eyetim_value++; // timervalue.value;
   console.log(minutes);
   console.log(seconds);
-  if (minutes % 2 == 0 && seconds === '0' + '0') {
+  if (minutes % 20 == 0 && seconds === '0' + '0') {
     eyetimer_notif();
   }
 }
@@ -397,7 +397,7 @@ function motivation_notif() {
 
 function create_motivation_alarm() {
   console.log(" motivation alarm set");
-  chrome.alarms.create("motivaite_notif", { periodInMinutes: 1.0 });
+  chrome.alarms.create("motivaite_notif", { periodInMinutes: 60.0 });
 }
 
 // create_alarm(minute);
