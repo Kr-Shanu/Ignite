@@ -296,23 +296,23 @@ chrome.storage.onChanged.addListener(ps => {
 
 // *************************    EYE protection    *********************************
 
-function create_alarm() {
-  console.log("eye protec alarm set");
-  chrome.alarms.create("blink_eye", { periodInMinutes: 1.0 });
-}
+// function create_alarm() {
+//   console.log("eye protec alarm set");
+//   chrome.alarms.create("blink_eye", { periodInMinutes: 1.0 });
+// }
 // create_alarm(minute);
-chrome.alarms.onAlarm.addListener(function (eye_alm) {
-  // alert("its been soo long look away");
+// chrome.alarms.onAlarm.addListener(function (eye_alm) {
+//   // alert("its been soo long look away");
 
-  console.log("inside blink alarm functions");
-})
-function clear_alarms() {
-  chrome.alarms.clear(
-    "blink_eye", function () {
-      alert("All blink eye alarms cleared");
-    }
-  )
-}
+//   console.log("inside blink alarm functions");
+// })
+// function clear_alarms() {
+//   chrome.alarms.clear(
+//     "blink_eye", function () {
+//       alert("All blink eye alarms cleared");
+//     }
+//   )
+// }
 // eyetimer_notif();   //just to check if the notificaiton api is working or not, this line can be deleted
 function eyetimer_notif() {
   chrome.notifications.create("eye_tim_notif", {
@@ -378,7 +378,6 @@ let author = '';
 
 function motivation_notif() {
   loadJSON((response) => {
-    // Parse JSON string into object
     let quotes = JSON.parse(response);
     let randomNumber = Math.random() * (Object.keys(quotes).length - 1);
     randomNumber = Math.round(randomNumber);
@@ -430,3 +429,15 @@ chrome.runtime.onMessage.addListener(
     }
   }
 );
+
+
+// *******************spotify*************************
+
+chrome.runtime.onMessage.addListener(
+  function (request4, sender, sendResponse) {
+    if (request4.greeting == "spotify_lnch") {
+      console.log("passed message to set motivation alarm reached");
+      chrome.windows.create({ url: "./data/popup/spotify.html", type: "panel", "width": 540, "height": 600 });
+      // alert("spotify launched");
+    }
+  });
