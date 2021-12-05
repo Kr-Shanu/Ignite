@@ -8,7 +8,7 @@ audio.play = (id, src, n = 5, volume = 0.8) => {
   audio.stop(id);
   const e = new Audio();
   e.volume = volume;
-  e.addEventListener('ended', function() {
+  e.addEventListener('ended', function () {
     n -= 1;
     if (n > 0) {
       e.currentTime = 0;
@@ -53,7 +53,7 @@ const alarms = {
       chrome.alarms.create(name, info);
     }
   },
-  fire({name}) {
+  fire({ name }) {
     const set = (name, title, message = `Time's up`) => chrome.notifications.clear(name, () => {
       const opts = {
         type: 'basic',
@@ -125,7 +125,7 @@ const alarms = {
       });
     }
   },
-  clear(name, callback = () => {}) {
+  clear(name, callback = () => { }) {
     if (alarms.cache[name]) {
       window.clearTimeout(alarms.cache[name].id);
       callback();
@@ -146,7 +146,7 @@ const alarms = {
     }
   },
   getAll(c) {
-    const locals = Object.entries(alarms.cache).map(([name, {when}]) => {
+    const locals = Object.entries(alarms.cache).map(([name, { when }]) => {
       return {
         name,
         scheduledTime: when
@@ -161,7 +161,7 @@ const alarms = {
 alarms.cache = {};
 chrome.alarms.onAlarm.addListener(alarms.fire);
 
-const silent = (id, callback = () => {}) => {
+const silent = (id, callback = () => { }) => {
   audio.stop(id);
   chrome.notifications.clear(id);
 
@@ -267,24 +267,24 @@ chrome.storage.onChanged.addListener(ps => {
 
 /* FAQs & Feedback */
 {
-  const {management, runtime: {onInstalled, setUninstallURL, getManifest}, storage, tabs} = chrome;
+  const { management, runtime: { onInstalled, setUninstallURL, getManifest }, storage, tabs } = chrome;
   if (navigator.webdriver !== true) {
     const page = getManifest().homepage_url;
-    const {name, version} = getManifest();
-    onInstalled.addListener(({reason, previousVersion}) => {
-      management.getSelf(({installType}) => installType === 'normal' && storage.local.get({
+    const { name, version } = getManifest();
+    onInstalled.addListener(({ reason, previousVersion }) => {
+      management.getSelf(({ installType }) => installType === 'normal' && storage.local.get({
         'faqs': true,
         'last-update': 0
       }, prefs => {
         if (reason === 'install' || (prefs.faqs && reason === 'update')) {
           const doUpdate = (Date.now() - prefs['last-update']) / 1000 / 60 / 60 / 24 > 45;
           if (doUpdate && previousVersion !== version) {
-            tabs.query({active: true, currentWindow: true}, tbs => tabs.create({
+            tabs.query({ active: true, currentWindow: true }, tbs => tabs.create({
               url: page + '?version=' + version + (previousVersion ? '&p=' + previousVersion : '') + '&type=' + reason,
               active: reason === 'install',
-              ...(tbs && tbs.length && {index: tbs[0].index + 1})
+              ...(tbs && tbs.length && { index: tbs[0].index + 1 })
             }));
-            storage.local.set({'last-update': Date.now()});
+            storage.local.set({ 'last-update': Date.now() });
           }
         }
       }));
@@ -292,3 +292,152 @@ chrome.storage.onChanged.addListener(ps => {
     setUninstallURL(page + '?rd=feedback&name=' + encodeURIComponent(name) + '&version=' + version);
   }
 }
+
+
+// *************************    EYE protection    *********************************
+
+// function create_alarm() {
+//   console.log("eye protec alarm set");
+//   chrome.alarms.create("blink_eye", { periodInMinutes: 1.0 });
+// }
+// create_alarm(minute);
+// chrome.alarms.onAlarm.addListener(function (eye_alm) {
+//   // alert("its been soo long look away");
+
+//   console.log("inside blink alarm functions");
+// })
+// function clear_alarms() {
+//   chrome.alarms.clear(
+//     "blink_eye", function () {
+//       alert("All blink eye alarms cleared");
+//     }
+//   )
+// }
+// eyetimer_notif();   //just to check if the notificaiton api is working or not, this line can be deleted
+function eyetimer_notif() {
+  chrome.notifications.create("eye_tim_notif", {
+    type: "basic",
+    iconUrl: "/data/icons/32.png",
+    title: "Care for your eyes : Ignite",
+    message: "look away you have been seeing your screens since 20 minutes straight it will harm your eyes"
+  }, function (n) { console.log("notificaiton api in action with eye protection") })               // call back funciton in case you don't understand.
+}
+chrome.runtime.onMessage.addListener(
+  function (request, sender, sendResponse) {
+    if (request.greeting == "put_eye_alarm") {
+      console.log("passed message to set alarm reached");
+      // create_alarm();
+      eyeprotoff = setInterval(eyetimer, 1000);
+    }
+  });
+chrome.runtime.onMessage.addListener(
+  function (request, sender, sendResponse) {
+    if (request.greeting == "clear_eye_alarm") {
+      // clear_alarms();
+      clearInterval(eyeprotoff);
+      console.log("clear eye alarm");
+    }
+  });
+var eyetim_value = 20 * 60;
+
+// eyeprotoff = setInterval(eyetimer, 1000);
+let eyeprotoff;
+
+
+
+function eyetimer() {
+  var minutes = parseInt((eyetim_value) / 60);
+  var seconds = ((eyetim_value) % 60);
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+  eyetim_value++; // timervalue.value;
+  console.log(minutes);
+  console.log(seconds);
+  if (minutes % 2 == 0 && seconds === '0' + '0') {
+    eyetimer_notif();
+  }
+}
+
+
+// **************************   EYE protection    ********************************
+
+// ********************************motivational quotes************************
+function loadJSON(callback) {
+
+  let xobj = new XMLHttpRequest();
+  xobj.overrideMimeType("application/json");
+  xobj.open('GET', './quotes.json', true);
+  xobj.onreadystatechange = () => {
+    if (xobj.readyState == 4 && xobj.status == "200") {
+      callback(xobj.responseText);
+    }
+  }
+  xobj.send(null);
+}
+let quote = '';
+let author = '';
+
+function motivation_notif() {
+  loadJSON((response) => {
+    let quotes = JSON.parse(response);
+    let randomNumber = Math.random() * (Object.keys(quotes).length - 1);
+    randomNumber = Math.round(randomNumber);
+    quote = quotes[randomNumber].quote;
+    author = quotes[randomNumber].author;
+    // alert(quote);
+
+  })
+  chrome.notifications.create("motivation_notification", {
+
+    type: "basic",
+    iconUrl: "/data/icons/32.png",
+    title: quote,
+    message: author,
+  }, function () { console.log("notificaiton motivation api in action") })               // call back funciton in case you don't understand.
+}
+
+function create_motivation_alarm() {
+  console.log(" motivation alarm set");
+  chrome.alarms.create("motivaite_notif", { periodInMinutes: 1.0 });
+}
+
+// create_alarm(minute);
+chrome.alarms.onAlarm.addListener(function () {
+  motivation_notif();
+  console.log("inside motivation alarm functions");
+})
+
+function clear_motiv_alarms() {
+  chrome.alarms.clear(
+    "motivaite_notif", function () {
+      alert("All motivation alarms cleared");
+    }
+  )
+}
+
+chrome.runtime.onMessage.addListener(
+  function (request3, sender, sendResponse) {
+    if (request3.greeting == "put_motivation") {
+      console.log("passed message to set motivation alarm reached");
+      create_motivation_alarm();
+    }
+  });
+chrome.runtime.onMessage.addListener(
+  function (request2, sender, sendResponse) {
+    if (request2.greeting == "clear_motivation") {
+      clear_motiv_alarms();
+      console.log("motivation clear");
+    }
+  }
+);
+
+
+// *******************spotify*************************
+
+chrome.runtime.onMessage.addListener(
+  function (request4, sender, sendResponse) {
+    if (request4.greeting == "spotify_lnch") {
+      console.log("passed message to set motivation alarm reached");
+      chrome.windows.create({ url: "./data/popup/spotify.html", type: "panel", "width": 540, "height": 600 });
+      // alert("spotify launched");
+    }
+  });
