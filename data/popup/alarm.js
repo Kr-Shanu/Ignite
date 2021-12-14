@@ -30,6 +30,7 @@ alarm.format = (d, time = false) => {
   return day + (time ? ' ' + ('0' + d.getHours()).substr(-2) + ':' + ('0' + d.getMinutes()).substr(-2) : '');
 };
 
+
 document.querySelector('.alarm div[data-id="content"]').addEventListener('change', ({target}) => {
   const entry = target.closest('.entry');
   if (entry) {
@@ -67,6 +68,8 @@ document.querySelector('.alarm div[data-id="content"]').addEventListener('change
     });
   }
 });
+
+
 
 alarm.convert = (time, ds) => {
   const d = new Date(); // 0 - 6 Sunday is 0, Monday is 1, and so on.
