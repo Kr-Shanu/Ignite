@@ -21,3 +21,7 @@ function dropdown_fnc(pomo_list, pomo) {
 dropdown_fnc(pomo_list,pomo);
 
 //**************************************script for dropdown for timer in  focus mode ends here********
+let eyeprot_btn = document.getElementById("eyeprot_btn");
+let eyeprot_divn = document.getElementById("eyeprot_divn");
+
+dropdown_fnc(eyeprot_divn,eyeprot_btn);

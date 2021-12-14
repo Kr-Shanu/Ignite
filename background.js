@@ -1,6 +1,10 @@
 'use strict';
 
+
+
 const isFirefox = /Firefox/.test(navigator.userAgent) || typeof InstallTrigger !== 'undefined';
+
+
 
 const audio = {};
 audio.cache = {};
@@ -22,6 +26,9 @@ audio.play = (id, src, n = 5, volume = 0.8) => {
   e.src = src;
   e.play();
 };
+
+
+
 audio.stop = id => {
   const e = audio.cache[id];
   if (e) {
@@ -30,6 +37,8 @@ audio.stop = id => {
     delete audio.cache[id];
   }
 };
+
+
 
 const alarms = {
   create(name, info) {
@@ -158,8 +167,14 @@ const alarms = {
     ]));
   }
 };
+
+
+
 alarms.cache = {};
 chrome.alarms.onAlarm.addListener(alarms.fire);
+
+
+
 
 const silent = (id, callback = () => { }) => {
   audio.stop(id);
@@ -171,15 +186,25 @@ const silent = (id, callback = () => { }) => {
     Promise.all(v).then(callback);
   });
 };
+
+
+
 chrome.notifications.onClicked.addListener(id => silent(id));
 chrome.notifications.onClosed.addListener(id => silent(id));
+
+
 
 if (chrome.notifications.onShowSettings) {
   chrome.notifications.onShowSettings.addListener(id => silent(id));
 }
+
+
 if (chrome.notifications.onPermissionLevelChanged) {
   chrome.notifications.onPermissionLevelChanged.addListener(id => silent(id));
 }
+
+
+
 chrome.notifications.onButtonClicked.addListener((id, buttonIndex) => {
   silent(id, () => {
     buttonIndex += 1;
@@ -188,6 +213,8 @@ chrome.notifications.onButtonClicked.addListener((id, buttonIndex) => {
     });
   });
 });
+
+
 
 const onMessage = (request, sender, respose) => {
   if (request.method === 'set-alarm') {
@@ -225,7 +252,12 @@ const onMessage = (request, sender, respose) => {
     chrome.notifications.getAll(ns => Object.keys(ns).forEach(silent));
   }
 };
+
+
+
 chrome.runtime.onMessage.addListener(onMessage);
+
+
 
 const onCommand = command => {
   if (command === 'open-interface') {
@@ -244,8 +276,12 @@ const onCommand = command => {
     }));
   }
 };
+
+
+
 chrome.commands.onCommand.addListener(onCommand);
 chrome.browserAction.onClicked.addListener(() => onCommand('open-interface'));
+
 
 
 chrome.storage.onChanged.addListener(ps => {
@@ -264,6 +300,8 @@ chrome.storage.onChanged.addListener(ps => {
   chrome.runtime.onInstalled.addListener(once);
   chrome.runtime.onStartup.addListener(once);
 }
+
+
 
 /* FAQs & Feedback */
 {
@@ -294,6 +332,7 @@ chrome.storage.onChanged.addListener(ps => {
 }
 
 
+
 function eyetimer_notif() {
   chrome.notifications.create("eye_tim_notif", {
     type: "basic",
@@ -302,25 +341,12 @@ function eyetimer_notif() {
     message: "look away you have been seeing your screens since 20 minutes straight it will harm your eyes"
   }, function (n) { console.log("notificaiton api in action with eye protection") })               // call back funciton in case you don't understand.
 }
-// chrome.runtime.onMessage.addListener(
-//   function (request, sender, sendResponse) {
-//     if (request.greeting == "put_eye_alarm") {
-//       console.log("passed message to set alarm reached");
-//       // create_alarm();
-//       eyeprotoff = setInterval(eyetimer, 1000);
-//     }
-//   });
-// chrome.runtime.onMessage.addListener(
-//   function (request, sender, sendResponse) {
-//     if (request.greeting == "clear_eye_alarm") {
-//       // clear_alarms();
-//       clearInterval(eyeprotoff);
-//       console.log("clear eye alarm");
-//     }
-//   });
-var eyetim_value = 1 * 60;
 
-// eyeprotoff = setInterval(eyetimer, 1000);
+
+
+var eyetim_value = 20 * 60;
+
+
 let eyeprotoff;
 
 
@@ -332,13 +358,15 @@ function eyetimer() {
   eyetim_value++; // timervalue.value;
   console.log(minutes);
   console.log(seconds);
-  if (minutes % 1 == 0 && seconds === '0' + '0') {
-    eyetimer_notif();
+  if (minutes % 20 == 0 && seconds === '0' + '0') {
+    // eyetimer_notif();
+    chrome.windows.create({ url: "./data/popup/eye2.html", type: "panel", "width": 540, "height": 320 });
   }
 }
 
 
 // **************************   EYE protection    ********************************
+
 
 // ********************************motivational quotes************************
 function loadJSON(callback) {
@@ -353,8 +381,12 @@ function loadJSON(callback) {
   }
   xobj.send(null);
 }
+
+
 let quote = '';
 let author = '';
+
+
 
 function motivation_notif() {
   loadJSON((response) => {
@@ -363,7 +395,6 @@ function motivation_notif() {
     randomNumber = Math.round(randomNumber);
     quote = quotes[randomNumber].quote;
     author = quotes[randomNumber].author;
-    // alert(quote);
 
   })
   chrome.notifications.create("motivation_notification", {
@@ -375,10 +406,14 @@ function motivation_notif() {
   }, function () { console.log("notificaiton motivation api in action") })               // call back funciton in case you don't understand.
 }
 
+
+
 function create_motivation_alarm() {
   console.log(" motivation alarm set");
-  chrome.alarms.create("motivaite_notif", { periodInMinutes: 1.0 });  //****************time is to be set here */
+  chrome.alarms.create("motivaite_notif", { periodInMinutes: 30.0 });  //****************time is to be set here */
 }
+
+
 
 // create_alarm(minute);
 chrome.alarms.onAlarm.addListener(function () {
@@ -386,6 +421,8 @@ chrome.alarms.onAlarm.addListener(function () {
   console.log("inside motivation alarm functions");
 })
 
+
+ 
 function clear_motiv_alarms() {
   chrome.alarms.clear(
     "motivaite_notif", function () {
@@ -394,35 +431,13 @@ function clear_motiv_alarms() {
   )
 }
 
-// chrome.runtime.onMessage.addListener(
-//   function (request3, sender, sendResponse) {
-//     if (request3.greeting == "put_motivation") {
-//       console.log("passed message to set motivation alarm reached");
-//       create_motivation_alarm();
-//     }
-//   });
-// chrome.runtime.onMessage.addListener(
-//   function (request2, sender, sendResponse) {
-//     if (request2.greeting == "clear_motivation") {
-//       clear_motiv_alarms();
-//       console.log("motivation clear");
-//     }
-//   }
-// );
 
 
 // *******************spotify*************************
 
-// chrome.runtime.onMessage.addListener(
-//   function (request4, sender, sendResponse) {
-//     if (request4.greeting == "spotify_lnch") {
-//       console.log("passed message to set motivation alarm reached");
-//       chrome.windows.create({ url: "./data/popup/spotify.html", type: "panel", "width": 540, "height": 600 });
-//       // alert("spotify launched");
-//     }
-//   });
 
-
+// Here we are listening to all the messages that we are sending from all the files to the 
+// background.js
 chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
     const alarm_choice = request.greeting;
@@ -453,6 +468,5 @@ chrome.runtime.onMessage.addListener(
     if (request4.greeting == "spotify_lnch") {
       console.log("passed message to set motivation alarm reached");
       chrome.windows.create({ url: "./data/popup/spotify.html", type: "panel", "width": 540, "height": 600 });
-      // alert("spotify launched");
     }
   });
