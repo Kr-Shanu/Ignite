@@ -338,7 +338,7 @@ chrome.runtime.onMessage.addListener(
       console.log("clear eye alarm");
     }
   });
-var eyetim_value = 21 * 60;
+var eyetim_value = 1 * 60;
 
 // eyeprotoff = setInterval(eyetimer, 1000);
 let eyeprotoff;
@@ -397,7 +397,7 @@ function motivation_notif() {
 
 function create_motivation_alarm() {
   console.log(" motivation alarm set");
-  chrome.alarms.create("motivaite_notif", { periodInMinutes: 60.0 });
+  chrome.alarms.create("motivaite_notif", { periodInMinutes: 1.0 });  //****************time is to be set here */
 }
 
 // create_alarm(minute);
@@ -441,3 +441,25 @@ chrome.runtime.onMessage.addListener(
       // alert("spotify launched");
     }
   });
+
+
+  // chrome.runtime.onMessage.addListener(
+  //   function (request, sender, sendResponse) 
+  //   {
+  //     const alarm_choice = request.greeting;
+
+  //     switch (alarm_choice) 
+  //     {
+  //       case "":
+          
+  //         break;
+      
+  //       default:
+  //         break;
+  //     }
+  //     if (request4.greeting == "spotify_lnch") {
+  //       console.log("passed message to set motivation alarm reached");
+  //       chrome.windows.create({ url: "./data/popup/spotify.html", type: "panel", "width": 540, "height": 600 });
+  //       // alert("spotify launched");
+  //     }
+  //   });

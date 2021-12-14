@@ -1,7 +1,7 @@
 
 //  here we have 2 selection, 1 list and the other is button element.
 let pomo = document.getElementById("btn");
-let pomo_list = document.getElementById("list");
+let pomo_list = document.getElementById("liste");
 
 
 function dropdown_fnc(pomo_list, pomo) {

@@ -23,7 +23,7 @@
         "https://*.instagram.com/*",
         "https://*.netflix.com/*"
       ],
-      "js": ["focusprompt.js"]
+      "js": ["data/popup/focusprompt.js"]
     }
   ],
   "browser_action": {
