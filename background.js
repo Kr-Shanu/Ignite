@@ -294,26 +294,6 @@ chrome.storage.onChanged.addListener(ps => {
 }
 
 
-// *************************    EYE protection    *********************************
-
-// function create_alarm() {
-//   console.log("eye protec alarm set");
-//   chrome.alarms.create("blink_eye", { periodInMinutes: 1.0 });
-// }
-// create_alarm(minute);
-// chrome.alarms.onAlarm.addListener(function (eye_alm) {
-//   // alert("its been soo long look away");
-
-//   console.log("inside blink alarm functions");
-// })
-// function clear_alarms() {
-//   chrome.alarms.clear(
-//     "blink_eye", function () {
-//       alert("All blink eye alarms cleared");
-//     }
-//   )
-// }
-// eyetimer_notif();   //just to check if the notificaiton api is working or not, this line can be deleted
 function eyetimer_notif() {
   chrome.notifications.create("eye_tim_notif", {
     type: "basic",
@@ -322,22 +302,22 @@ function eyetimer_notif() {
     message: "look away you have been seeing your screens since 20 minutes straight it will harm your eyes"
   }, function (n) { console.log("notificaiton api in action with eye protection") })               // call back funciton in case you don't understand.
 }
-chrome.runtime.onMessage.addListener(
-  function (request, sender, sendResponse) {
-    if (request.greeting == "put_eye_alarm") {
-      console.log("passed message to set alarm reached");
-      // create_alarm();
-      eyeprotoff = setInterval(eyetimer, 1000);
-    }
-  });
-chrome.runtime.onMessage.addListener(
-  function (request, sender, sendResponse) {
-    if (request.greeting == "clear_eye_alarm") {
-      // clear_alarms();
-      clearInterval(eyeprotoff);
-      console.log("clear eye alarm");
-    }
-  });
+// chrome.runtime.onMessage.addListener(
+//   function (request, sender, sendResponse) {
+//     if (request.greeting == "put_eye_alarm") {
+//       console.log("passed message to set alarm reached");
+//       // create_alarm();
+//       eyeprotoff = setInterval(eyetimer, 1000);
+//     }
+//   });
+// chrome.runtime.onMessage.addListener(
+//   function (request, sender, sendResponse) {
+//     if (request.greeting == "clear_eye_alarm") {
+//       // clear_alarms();
+//       clearInterval(eyeprotoff);
+//       console.log("clear eye alarm");
+//     }
+//   });
 var eyetim_value = 1 * 60;
 
 // eyeprotoff = setInterval(eyetimer, 1000);
@@ -352,7 +332,7 @@ function eyetimer() {
   eyetim_value++; // timervalue.value;
   console.log(minutes);
   console.log(seconds);
-  if (minutes % 20 == 0 && seconds === '0' + '0') {
+  if (minutes % 1 == 0 && seconds === '0' + '0') {
     eyetimer_notif();
   }
 }
@@ -414,52 +394,65 @@ function clear_motiv_alarms() {
   )
 }
 
-chrome.runtime.onMessage.addListener(
-  function (request3, sender, sendResponse) {
-    if (request3.greeting == "put_motivation") {
-      console.log("passed message to set motivation alarm reached");
-      create_motivation_alarm();
-    }
-  });
-chrome.runtime.onMessage.addListener(
-  function (request2, sender, sendResponse) {
-    if (request2.greeting == "clear_motivation") {
-      clear_motiv_alarms();
-      console.log("motivation clear");
-    }
-  }
-);
+// chrome.runtime.onMessage.addListener(
+//   function (request3, sender, sendResponse) {
+//     if (request3.greeting == "put_motivation") {
+//       console.log("passed message to set motivation alarm reached");
+//       create_motivation_alarm();
+//     }
+//   });
+// chrome.runtime.onMessage.addListener(
+//   function (request2, sender, sendResponse) {
+//     if (request2.greeting == "clear_motivation") {
+//       clear_motiv_alarms();
+//       console.log("motivation clear");
+//     }
+//   }
+// );
 
 
 // *******************spotify*************************
 
+// chrome.runtime.onMessage.addListener(
+//   function (request4, sender, sendResponse) {
+//     if (request4.greeting == "spotify_lnch") {
+//       console.log("passed message to set motivation alarm reached");
+//       chrome.windows.create({ url: "./data/popup/spotify.html", type: "panel", "width": 540, "height": 600 });
+//       // alert("spotify launched");
+//     }
+//   });
+
+
 chrome.runtime.onMessage.addListener(
-  function (request4, sender, sendResponse) {
+  function (request, sender, sendResponse) {
+    const alarm_choice = request.greeting;
+
+    switch (alarm_choice) {
+
+      case "put_eye_alarm":
+        console.log("passed message to set alarm reached");
+        // create_alarm();
+        eyeprotoff = setInterval(eyetimer, 1000);
+        break;
+      case "put_motivation":
+        console.log("passed message to set motivation alarm reached");
+        create_motivation_alarm();
+        break;
+      case "clear_motivation":
+        clear_motiv_alarms();
+        console.log("motivation clear");
+        break;
+      case "spotify_lnch":
+        console.log("passed message to set motivation alarm reached");
+        chrome.windows.create({ url: "./data/popup/spotify.html", type: "panel", "width": 540, "height": 600 });
+
+      default:
+        console.log("wrong call!!");
+        break;
+    }
     if (request4.greeting == "spotify_lnch") {
       console.log("passed message to set motivation alarm reached");
       chrome.windows.create({ url: "./data/popup/spotify.html", type: "panel", "width": 540, "height": 600 });
       // alert("spotify launched");
     }
   });
-
-
-  // chrome.runtime.onMessage.addListener(
-  //   function (request, sender, sendResponse) 
-  //   {
-  //     const alarm_choice = request.greeting;
-
-  //     switch (alarm_choice) 
-  //     {
-  //       case "":
-          
-  //         break;
-      
-  //       default:
-  //         break;
-  //     }
-  //     if (request4.greeting == "spotify_lnch") {
-  //       console.log("passed message to set motivation alarm reached");
-  //       chrome.windows.create({ url: "./data/popup/spotify.html", type: "panel", "width": 540, "height": 600 });
-  //       // alert("spotify launched");
-  //     }
-  //   });
