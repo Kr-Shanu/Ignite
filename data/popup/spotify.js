@@ -1,9 +1,9 @@
+// We are selecting a button spotify_btn 
 document.getElementById("spotify_btn").addEventListener("click", launch_spotify);
-// document.getElementById("focus_mode").addEventListener("click",foucsmode_trigger);
 
+//  function to trigger the spotify window!!
 function launch_spotify() {
     chrome.runtime.sendMessage({
         greeting: "spotify_lnch"
     })
-    // alert("press");
 }
