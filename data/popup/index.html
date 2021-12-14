@@ -36,60 +36,7 @@
 
         <div class="options">
             <h1 class="optmin">Focus Mode</h1>
-            <div class="optdiv">
-
-                <label class="switch">
-                    <input id="focusmode_dropdown" type="checkbox">
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div id="focusmode_dropdown_div">
-
-                <div class="optmin">
-                    <div>
-
-                        <p id="timer_text">Turn the timer on</p>
-                        <label class="switch">
-                            <input id="timebox_switch" type="checkbox">
-                            <span class="slider"></span>
-                        </label>
-                        <div id="timebox">
-                            <!--   <input type="number" name="" id="timer_value" placeholder="Enter the time in minutes">
-                            <button id="set_btn" class="alarm_btn">Set</button>   -->
-
-                        </div>
-                    </div>
-                    <div>
-
-                        <p>Break Time</p>
-                        <label class="switch">
-                            <input id="breaktime" type="checkbox">
-                            <span class="slider"></span>
-                        </label>
-                        <div id="breakdiv"></div>
-                    </div>
-                    <div>
-
-
-                        <p>Turn the alarm on</p>
-                        <label class="switch">
-                            <input type="radio" name="tab">
-                            <span class="slider"></span>
-                        </label>
-                        <!-- <label class="switch">
-                            <input id="timer_dropdown" type="checkbox">
-                            <span class="slider"></span>
-                        </label> -->
-                    </div>
-                </div>
-                <!-- <div>
-                    <div id="timer_dropdown_div">
-                    </div>
-                </div> -->
-
-
-                <!-- <hr> -->
-            </div>
+            <h3>Study distraction free</h3>
         </div>
         <hr>
         <div class="options">
@@ -101,13 +48,12 @@
                     <span class="slider"></span>
                 </label>
             </div>
-            <div id="eyeprotectimer">
-                20:00
+
+            <div>
+                <button style="margin-top: 25px;" class="alarm_btn" id="checke">Cancel</button>
+                <button class="alarm_btn" id="eye_btn">click me</button>
             </div>
-            <button id="checke">cancel</button>
-            <button id="eye_btn">click me</button>
-            <button id="eye_reset" class="alarm_btn" style="margin-left: 50%;">reset</button>
-            <div id="eyeprot_div"></div>
+
             <hr>
             <div class="options">
                 <h1 class="optmin">Alarms and Clocks</h1>
@@ -279,13 +225,6 @@
 
 
 
-
-
-
-
-
-
-
         <hr>
         <div class="options">
             <h1 class="optmin">Motivational Quotes</h1>
@@ -296,52 +235,34 @@
                     <span class="slider"></span>
                 </label>
             </div>
+
             <div class="optmin">
 
                 <div>
 
-                    <p>Send Quotes Every Hour</p>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
-                    <button id="motivation_off">do not please</button>
-                    <button id="motivation_on">motivate me</button>
+                    <p>It send Quotes Every Hour</p>
+                    <div>
+                        <button class="alarm_btn" id="motivation_off">Do not please</button>
+                        <button class="alarm_btn" id="motivation_on">Motivate me</button>
+                    </div>
+
                 </div>
             </div>
             <hr>
         </div>
 
 
-        <h1> Focus Music
-        </h1>
-
-        <button id="spotify_btn">launch Music</button>
-
-        <!-- <iframe src="https://open.spotify.com/embed/playlist/75NnLOSbadDI3dfKHLKplO" width="100%" height="380"
-            frameBorder="0" allowfullscreen=""
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> -->
-        <!-- <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWZeKCadgRdKQ" width="100%" height="380"
-            frameBorder="0" allowfullscreen=""
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> -->
+        
+        <h1 class="optmin"> Focus Music</h1>
+        <div>
+            <button style="margin-top: 18px;" class="alarm_btn" id="spotify_btn">launch Music</button>
+        </div>
     </div>
 
-    <!-- <footer id="tabs" hbox>
-        <input type="radio" name="tab" id="alarm" checked>
-        <label for="alarm">Alarm</label>
-        <input type="radio" name="tab" id="stopwatch">
-        <label for="stopwatch">Stopwatch</label>
-        <input type="radio" name="tab" id="timer">
-        <label for="timer">Timer</label>
-    </footer> -->
+
 
 
     <script src="main.js"></script>
-    <!-- <script src="focusmode.js"></script>
-    <script src="alarmclock.js"></script>
-    <script type="text/javascript" src="../resources/mousetrap.js"></script>
-    <script type="text/javascript" src="pomodoro.js"></script>
-    <script src="eyeprotection.js"></script> -->
     <script src="eyeprotection.js"></script>
     <script src="eye_timer.js"></script>
     <script src="dropdown.js"></script>
