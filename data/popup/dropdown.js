@@ -25,3 +25,12 @@ let eyeprot_btn = document.getElementById("eyeprot_btn");
 let eyeprot_divn = document.getElementById("eyeprot_divn");
 
 dropdown_fnc(eyeprot_divn,eyeprot_btn);
+
+
+// ********************************eyeprot dropdown ends***************************************
+let motiv_switch = document.getElementById("motiv_switch");
+let motiv_div = document.getElementById("motiv_div");
+dropdown_fnc(motiv_div,motiv_switch);
+
+
+// **************************************motiv dropdown ends here ***************************************

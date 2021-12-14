@@ -344,7 +344,7 @@ function eyetimer_notif() {
 
 
 
-var eyetim_value = 20 * 60;
+var eyetim_value = 21 * 60;
 
 
 let eyeprotoff;
