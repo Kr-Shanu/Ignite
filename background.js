@@ -437,8 +437,5 @@ chrome.runtime.onMessage.addListener(
         console.log("wrong call!!");
         break;
     }
-    if (request4.greeting == "spotify_lnch") {
-      console.log("passed message to set motivation alarm reached");
-      chrome.windows.create({ url: "./data/popup/spotify.html", type: "panel", "width": 540, "height": 600 });
-    }
+    
   });
