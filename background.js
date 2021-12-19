@@ -430,12 +430,15 @@ chrome.runtime.onMessage.addListener(
         console.log("motivation clear");
         break;
       case "spotify_lnch":
-        console.log("passed message to set motivation alarm reached");
         chrome.windows.create({ url: "./data/popup/spotify.html", type: "panel", "width": 540, "height": 600 });
-
+        break;
+      case "clear_eye_alarm":
+        console.log("eye alarm cleared");
+        clearInterval(eyeprotoff);
+        break;
       default:
         console.log("wrong call!!");
         break;
     }
-    
+
   });
