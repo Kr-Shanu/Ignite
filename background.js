@@ -367,18 +367,15 @@ function motivation_notif() {
     randomNumber = Math.round(randomNumber);
     quote = quotes[randomNumber].quote;
     author = quotes[randomNumber].author;
-
   })
   chrome.notifications.create("motivation_notification", {
-
-    type: "basic",
-    iconUrl: "/data/icons/32.png",
-    title: quote,
-    message: author,
-  }, function () { console.log("notificaiton motivation api in action") })               // call back funciton in case you don't understand.
+    type: "basic", iconUrl: "/data/icons/32.png",
+    title: "Ignite Motivation ",
+    priority: 2,
+    message: quote + "  - " + author,
+    silent: true,
+  }, function () { console.log("notificaiton motivation api in action") })               // call back funciton in case you don't understand.}
 }
-
-
 
 function create_motivation_alarm() {
   console.log(" motivation alarm set");
@@ -437,7 +434,7 @@ chrome.runtime.onMessage.addListener(
         clearInterval(eyeprotoff);
         break;
       default:
-        console.log("wrong call!!");
+        // console.log("wrong call!!");
         break;
     }
 

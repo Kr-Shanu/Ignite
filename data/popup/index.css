@@ -331,10 +331,6 @@ html.pp body {
 
 input,
 body,
-h1 {
-  /* font-family: 'Open Sans', sans-serif; */
-}
-body,
 input {
   font-size: var(--font-normal);
 }
