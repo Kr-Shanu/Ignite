@@ -3,7 +3,7 @@
 const alarm = {};
 window.alarm = alarm;
 
-alarm.format = (d, time = false) => {
+alarm.format = (d, time = false) => {           //array list for the day in alarm section
   const day = ({
     0: 'Sun',
     1: 'Mon',
@@ -12,30 +12,30 @@ alarm.format = (d, time = false) => {
     4: 'Thu',
     5: 'Fri',
     6: 'Sat'
-  })[d.getDay()] + ', ' + ('0' + d.getDate()).substr(-2) + ' ' + ({
+  })[d.getDay()] + ', ' + ('0' + d.getDate()).substr(-2) + ' ' + ({          // getting today's day to set the alarm
     0: 'Jan',
     1: 'Feb',
     2: 'Mar',
     3: 'Apr',
     4: 'May',
     5: 'Jun',
-    6: 'Jul',
+    6: 'Jul',                                                             //arrays for months
     7: 'Aug',
     8: 'Sep',
     9: 'Oct',
     10: 'Nov',
     11: 'Dec'
-  })[d.getMonth()];
+  })[d.getMonth()];                                                       // getting the month to set the alarm
 
-  return day + (time ? ' ' + ('0' + d.getHours()).substr(-2) + ':' + ('0' + d.getMinutes()).substr(-2) : '');
+  return day + (time ? ' ' + ('0' + d.getHours()).substr(-2) + ':' + ('0' + d.getMinutes()).substr(-2) : '');  // it returns the todays exact date with days and months
 };
 
 
-document.querySelector('.alarm div[data-id="content"]').addEventListener('change', ({target}) => {
+document.querySelector('.alarm div[data-id="content"]').addEventListener('change', ({target}) => {    //if the id content is changed under alarm class then execute the below code
   const entry = target.closest('.entry');
   if (entry) {
     const jobs = [];
-    entry.setAttribute('disabled', target.checked ? false : true);
+    entry.setAttribute('disabled', target.checked ? false : true);     //34 to 70 toggle hide or show the time remaining for next alarm
     alarm.toast();
     chrome.runtime.sendMessage({
       method: 'get-alarms'
@@ -45,15 +45,15 @@ document.querySelector('.alarm div[data-id="content"]').addEventListener('change
         method: 'clear-alarm',
         name: a.name
       }));
-      // set new alarms
+      // set new alarms                        
       if (target.checked) {
-        let periodInMinutes = undefined;
-        if (entry.querySelector('[data-id=once]').textContent === '') {
-          periodInMinutes = entry.querySelector('[data-id=date]').classList.contains('range') ? 7 * 24 * 60 : undefined;
+        let periodInMinutes = undefined;                                                                   
+        if (entry.querySelector('[data-id=once]').textContent === '') {  //manipulating the html
+          periodInMinutes = entry.querySelector('[data-id=date]').classList.contains('range') ? 7 * 24 * 60 : undefined;    //setting the period in minutes for alarm for the alarm api
         }
 
         entry.times.forEach((when, index) => jobs.push({
-          method: 'set-alarm',
+          method: 'set-alarm',                                       //json for message passing named as jobs
           info: {
             when,
             periodInMinutes
@@ -61,7 +61,7 @@ document.querySelector('.alarm div[data-id="content"]').addEventListener('change
           name: entry.dataset.id + ':' + index
         }));
       }
-      chrome.runtime.sendMessage({
+      chrome.runtime.sendMessage({                  //message sent to background page
         method: 'batch',
         jobs
       });
@@ -74,17 +74,17 @@ document.querySelector('.alarm div[data-id="content"]').addEventListener('change
 alarm.convert = (time, ds) => {
   const d = new Date(); // 0 - 6 Sunday is 0, Monday is 1, and so on.
   d.setSeconds(0);
-  const day = d.getDay();
+  const day = d.getDay();      //setting the day
   const days = [...ds]; // clone
-  if (days.length === 0) {
+  if (days.length === 0) {   //means the present day
     days.push(d.getDay());
   }
   return days.map(a => (a - day)).map(n => {
     const o = new Date();
-    o.setDate(d.getDate() + n);
-    o.setHours(time.hours, time.minutes, 0);
-    if (o.getTime() < Date.now()) {
-      o.setDate(o.getDate() + 7);
+    o.setDate(d.getDate() + n);    //set the date for the alarm 
+    o.setHours(time.hours, time.minutes, 0);  //sets the hour
+    if (o.getTime() < Date.now()) { // if the day has been passed
+      o.setDate(o.getDate() + 7);  // then set for the next week
     }
     return o.getTime();
   }).filter((n, i, l) => l.indexOf(n) === i).sort();
@@ -92,19 +92,19 @@ alarm.convert = (time, ds) => {
 
 const init = (callback = () => {}) => chrome.runtime.sendMessage({
   method: 'get-alarms'
-}, alarms => chrome.storage.local.get({
+}, alarms => chrome.storage.local.get({             // storage api for getting the already set alarm
   'alarms': []
 }, prefs => {
-  const t = document.querySelector('.alarm template');
-  const entries = document.querySelector('.alarm div[data-id="entries"]');
+  const t = document.querySelector('.alarm template');   //getting the whole alarm box the area where we add alarm or toggle the switch
+  const entries = document.querySelector('.alarm div[data-id="entries"]');   //getting entries under the class alarm
 
-  for (const o of prefs.alarms.sort((a, b) => {
-    return a.time.hours * 60 + a.time.minutes - (b.time.hours * 60 + b.time.minutes);
+  for (const o of prefs.alarms.sort((a, b) => {                        //sorting according to the latest alarm
+    return a.time.hours * 60 + a.time.minutes - (b.time.hours * 60 + b.time.minutes); // how much time left for next alarm
   })) {
     const {id, time, days} = o;
     const clone = document.importNode(t.content, true);
     // time
-    clone.querySelector('[data-id="time"]').textContent =
+    clone.querySelector('[data-id="time"]').textContent =       //time to show in the html
       ('0' + time.hours).substr(-2) + ':' +
       ('0' + time.minutes).substr(-2);
     // next occurance
@@ -175,7 +175,7 @@ alarm.toast = () => {
   }
 };
 
-/* edit */
+// edit
 {
   const hours = document.querySelector('.alarm [data-id="edit"] [data-id="hours"]');
   const minutes = document.querySelector('.alarm [data-id="edit"] [data-id="minutes"]');
@@ -296,10 +296,10 @@ alarm.toast = () => {
   };
 }
 
+                                   // remove alarms;
 alarm.remove = target => {
   const entry = target.closest('.entry');
   if (entry) {
-    // remove alarms;
     const input = entry.querySelector('input:checked');
     if (input) {
       input.click();
