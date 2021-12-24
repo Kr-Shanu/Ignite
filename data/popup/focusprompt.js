@@ -1,0 +1,1 @@
+document.write("You can't open this page because you are under the focus mode of ignite chrome extension");

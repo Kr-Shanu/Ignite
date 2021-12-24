@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ignite Stay ignited</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=PT+Serif:ital@1&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<!-- <body> -->
+
+<body data-tab="alarm" data-alarm="view" data-stopwatch="start" data-timer="start" vbox>
+
+    <div id="body">
+        <div id="nav">
+            <div class="logo">Ignite</div>
+            <div id="eye"></div>
+        </div>
+
+        <div id="countdown" class="optmin" style="margin-left: 40%; font-size: 37px;font-weight: bolder;">
+
+        </div>
+
+        <div class="options">
+            <h1 class="optmin">Focus Mode</h1>
+            <h3>Study distraction free</h3>
+        </div>
+        <hr>
+        <div class="options">
+            <h1 class="optmin">Eye Protection</h1>
+            <div class="optdiv">
+
+                <label class="switch">
+                    <input id="eyeprot_btn" type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div id="eyeprot_divn" class="optmin">
+                <button class="alarm_btn" id="checke">Do not Protect</button>
+                <button class="alarm_btn" id="eye_btn">Protect</button>
+            </div>
+
+            <hr>
+            <div class="options">
+                <h1 class="optmin">Alarms and Clocks</h1>
+                <div class="optdiv">
+
+
+                    <label class="switch">
+                        <input id="btn" type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div id="liste">
+
+
+            <header hbox align="center">
+                <h1 for="alarm" class="medium">Alarm</h1>
+                <h1 for="stopwatch" class="medium">Stopwatch</h1>
+                <h1 for="timer" class="medium">Timer</h1>
+                <input type="button" id="plus">
+            </header>
+            <div id="content" hbox flex="1">
+                <div for="alarm" class="alarm" vbox>
+                    <div data-id="content" vbox flex="1">
+                        <div data-id="toast" class="bulky">
+                            <h1>Alarm in 14 hours 49 minutes</h1>
+                            <h3>Mon 26 Aug, 06:00</h3>
+                        </div>
+                        <template>
+                            <div class="entry" hbox align="center" disabled=true>
+                                <span class="large" data-id="time">00:00</span>
+                                <span class="small" data-id="once">once</span>
+                                <span class="small" data-id="date">Mon, 00 Aug</span>
+                                <input type="checkbox" class="switch">
+                                <input type="button" data-command="remove">
+                            </div>
+                        </template>
+                        <div data-id="entries" flex="1"></div>
+                    </div>
+                    <div data-id="edit" vbox flex="1">
+                        <div hbox align="center" pack="center" class="bulky">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td align="center"><input data-id="hours" type="number" min="0" max="23"
+                                                value="00"></td>
+                                        <td align="center"><input data-id="minutes" type="number" min="0" max="59"
+                                                value="00"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div data-id="current" class="small">Today</div>
+                        <div data-id="days" hbox>
+                            <input type="checkbox" data-id="M" value="1">
+                            <input type="checkbox" data-id="T" value="2">
+                            <input type="checkbox" data-id="W" value="3">
+                            <input type="checkbox" data-id="T" value="4">
+                            <input type="checkbox" data-id="F" value="5">
+                            <input type="checkbox" data-id="S" value="6">
+                            <input type="checkbox" data-id="S" value="0">
+                        </div>
+                        <div flex="1" vbox pack=center>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <span>Snooze</span>
+                                            <h3>5 minutes, 3 times</h3>
+                                        </div>
+                                    </td>
+                                    <td align="right"><input type="checkbox" class="switch" data-id="snooze">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <span>Once</span>
+                                            <h3>Do not repeat</h3>
+                                        </div>
+                                    </td>
+                                    <td align="right"><input type="checkbox" class="switch" data-id="once"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div>
+                            <input type="text" data-id="name" value="My next Meeting" placeholder="alarm's description">
+                        </div>
+                        <div data-id="tools" class="bulky">
+                            <input type="button" value="Cancel" data-command="cancel">
+                            <input type="button" value="Save" data-command="save">
+                        </div>
+                    </div>
+                </div>
+                <div for="stopwatch" class="stopwatch" vbox align="center">
+                    <div flex="1" data-id="center"></div>
+                    <div class="bulky">
+                        <h1 data-id="counter">00:00:00.00</h1>
+                        <h3 data-id="counter-laps"></h3>
+                    </div>
+                    <div data-id="content">
+                        <table class="small">
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div hbox align="end">
+                        <div data-id="tools" class="bulky">
+                            <input type="button" value="Start" data-command="start">
+                            <input type="button" value="Stop" data-command="stop">
+                            <input type="button" value="Lap" data-command="lap">
+                            <input type="button" value="Resume" data-command="resume">
+                            <input type="button" value="Reset" data-command="reset">
+                        </div>
+                    </div>
+                </div>
+                <div class="timer" vbox>
+                    <div hbox align="center" pack="center" flex="1">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Hours</th>
+                                    <th>Minutes</th>
+                                    <th>Seconds</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="number" data-id="hours" min="0" max="99" value="00"></td>
+                                    <td><input type="number" data-id="minutes" min="0" max="59" value="30"></td>
+                                    <td><input type="number" data-id="seconds" min="0" max="59" value="00"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div data-id="presets">
+                        <div hbox>
+                            <span data-value="00:05:00">00:05:00</span>
+                            <span data-value="00:10:00">00:10:00</span>
+                            <span data-value="00:30:00">00:30:00</span>
+                            <span data-value="00:45:00">00:45:00</span>
+                        </div>
+                        <div hbox>
+                            <span data-value="01:00:00">01:00:00</span>
+                            <span data-value="02:00:00">02:00:00</span>
+                            <span data-value="05:00:00">05:00:00</span>
+                            <span data-value="10:00:00">10:00:00</span>
+                        </div>
+                    </div>
+                    <div data-id="tools" class="bulky">
+                        <input type="button" value="Start" data-command="start">
+                        <input type="button" value="Resume" data-command="resume">
+                        <input type="button" value="Pause" data-command="pause">
+                        <input type="button" value="Cancel" data-command="cancel">
+                    </div>
+                </div>
+            </div>
+            <footer id="tabs" hbox>
+                <input type="radio" name="tab" id="alarm" checked>
+                <label for="alarm">Alarm</label>
+                <input type="radio" name="tab" id="stopwatch">
+                <label for="stopwatch">Stopwatch</label>
+                <input type="radio" name="tab" id="timer">
+                <label for="timer">Timer</label>
+            </footer>
+
+
+        </div>
+
+
+
+        <hr>
+        <div class="options">
+            <h1 class="optmin">Motivational Quotes</h1>
+            <div class="optdiv">
+
+                <label class="switch">
+                    <input id="motiv_switch" type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="optmin">
+
+                <div id="motiv_div">
+
+                    <p>It sends Quote Every Half an Hour</p>
+                    <div>
+                        <button class="alarm_btn" id="motivation_off">Do not please</button>
+                        <button class="alarm_btn" id="motivation_on">Motivate me</button>
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+        </div>
+
+
+
+        <h1 class="optmin"> Focus Music</h1>
+        <button style="margin: 30px;justify-content: center;align-items: center; margin-bottom: 45px;" class="alarm_btn"
+            id="spotify_btn">launch
+            Music</button>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="eyeprotection.js"></script>
+    <script src="eye_timer.js"></script>
+    <script src="dropdown.js"></script>
+    <script type="text/javascript" src="alarm.js"></script>
+    <script type="text/javascript" src="stopwatch.js"></script>
+    <script type="text/javascript" src="timer.js"></script>
+    <script type="text/javascript" src="ui.js"></script>
+    <script src="motiv_quotes.js"></script>
+    <script src="spotify.js"></script>
+
+</body>
+
+</html>
