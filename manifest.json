@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Ignite",
   "description": "This launcher is for enhancing your productivity.",
-  "version": "1.0.3",
+  "version": "1.2.3",
   "default_locale": "en",
   "permissions": [
     "storage",
