@@ -71,11 +71,11 @@ const alarms = {
         message: message + '\n\n' + (new Date()).toLocaleString(),
         priority: 2,
         requireInteraction: true,
-        buttons: [{
-          title: 'Snooze after 5 minutes'
-        }, {
-          title: 'Stop the alarm'
-        }]
+        // buttons: [{
+        //   title: 'Snooze after 5 minutes'
+        // }, {
+        //   title: 'Stop the alarm'
+        // }]
       };
       if (isFirefox) {
         delete opts.buttons;
@@ -103,14 +103,14 @@ const alarms = {
         'volume-alarm': 0.8
       }, prefs => {
         const o = prefs.alarms.filter(a => a.id === id).shift();
-        if (o.snooze) {
-          alarms.create('audio-' + id + '/1', {
-            when: Date.now() + 5 * 60 * 1000
-          });
-          alarms.create('audio-' + id + '/2', {
-            when: Date.now() + 10 * 60 * 24 * 365 * 1000
-          });
-        }
+        // if (o.snooze) {
+        //   alarms.create('audio-' + id + '/1', {
+        //     when: Date.now() + 5 * 60 * 1000
+        //   });
+        //   // alarms.create('audio-' + id + '/2', {
+        //   //   when: Date.now() + 10 * 60 * 1000
+        //   // });
+        // }
         audio.play(id, prefs['src-alarm'], prefs['repeats-alarm'], prefs['volume-alarm']);
         set(id, 'Alarm', o.name);
       });
@@ -193,15 +193,6 @@ chrome.notifications.onClicked.addListener(id => silent(id));
 chrome.notifications.onClosed.addListener(id => silent(id));
 
 
-
-if (chrome.notifications.onShowSettings) {
-  chrome.notifications.onShowSettings.addListener(id => silent(id));
-}
-
-
-if (chrome.notifications.onPermissionLevelChanged) {
-  chrome.notifications.onPermissionLevelChanged.addListener(id => silent(id));
-}
 
 
 
@@ -367,15 +358,20 @@ function motivation_notif() {
     randomNumber = Math.round(randomNumber);
     quote = quotes[randomNumber].quote;
     author = quotes[randomNumber].author;
+
   })
   chrome.notifications.create("motivation_notification", {
-    type: "basic", iconUrl: "/data/icons/32.png",
+
+    type: "basic",
+    iconUrl: "/data/icons/32.png",
     title: "Ignite Motivation ",
-    priority: 2,
-    message: quote + "  - " + author,
+    priority:2,
+    message: quote+"  - "+author,
     silent: true,
-  }, function () { console.log("notificaiton motivation api in action") })               // call back funciton in case you don't understand.}
+  }, function () { console.log("notificaiton motivation api in action") })               // call back funciton in case you don't understand.
 }
+
+
 
 function create_motivation_alarm() {
   console.log(" motivation alarm set");
