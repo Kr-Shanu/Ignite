@@ -1,1 +1,1 @@
-we will proceed with this branch to make the changes to later merge into test branch
+This is the master branch of the ignite chrome extension
